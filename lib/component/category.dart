@@ -3,6 +3,7 @@ import 'package:budget_tracker_app/helper/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -23,6 +24,8 @@ class CategoryComp extends StatelessWidget {
           children: [
             TextFormField(
               controller: textController,
+              validator: (value) =>
+                  value!.isEmpty ? 'Required category name' : null,
               decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.category_outlined),
                   focusColor: Colors.deepPurpleAccent,
@@ -92,6 +95,7 @@ class CategoryComp extends StatelessWidget {
 
                       int? res = await DBHelper.dbHelper
                           .insertCategory(name: category, image: image);
+                      Logger().i(res);
                       if (res != null) {
                         Get.showSnackbar(
                           const GetSnackBar(

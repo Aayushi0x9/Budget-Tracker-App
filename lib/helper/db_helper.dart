@@ -13,19 +13,21 @@ class DBHelper {
   String categoryName = 'c_name';
   String categoryImage = 'c_image';
 
+  //CREATE TABLE
   Future<void> initDB() async {
     String dbPath = await getDatabasesPath();
+
     String path = "${dbPath}budget.db";
+    Logger().i(path);
     db = await openDatabase(
       path,
       version: 1,
       onCreate: (db, _) async {
         String query = '''
-      CREATE TABLE $categoryTable(category_id INTEGER PRYMARY KEY AUTOINCREMENT,
+      CREATE TABLE $categoryTable(category_id INTEGER PRIMARY KEY AUTOINCREMENT,
       $categoryName Text NOT NULL,
       $categoryImage BLOB NOT NULL
-     
-      )
+      );
       ''';
 
         await db.execute(query).then(

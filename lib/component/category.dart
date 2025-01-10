@@ -1,7 +1,6 @@
 import 'package:budget_tracker_app/controller/category_controller.dart';
 import 'package:budget_tracker_app/helper/db_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
@@ -41,7 +40,7 @@ class CategoryComp extends StatelessWidget {
             ),
             Expanded(
               child: GridView.builder(
-                itemCount: controller.category.length,
+                itemCount: controller.categoryList.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
                     crossAxisSpacing: 10,
@@ -62,14 +61,14 @@ class CategoryComp extends StatelessWidget {
                         child: GridTile(
                           footer: Center(
                               child: Text(
-                            controller.category[index]['category'],
+                            controller.categoryList[index]['category'],
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
                           )),
                           child: Icon(
-                            controller.category[index]['icon'],
+                            controller.categoryList[index]['icon'],
                             size: 30,
                           ),
                         ),
@@ -87,22 +86,21 @@ class CategoryComp extends StatelessWidget {
                     if (formKey.currentState!.validate() &&
                         controller.getCategorySelectedIndex != null) {
                       String category = textController.text;
-                      String assetPath = 'assets/icons/gift.png';
-
-                      ByteData byteData = await rootBundle.load(assetPath);
-
-                      Uint8List image = byteData.buffer.asUint8List();
-
-                      int? res = await DBHelper.dbHelper
-                          .insertCategory(name: category, image: image);
+                      // String assetPath = 'assets/icons/gift.png';
+                      // ByteData byteData = await rootBundle.load(assetPath);
+                      // Uint8List image = byteData.buffer.asUint8List();
+                      int image = controller.getCategorySelectedIndex!;
+                      int? res = await DBHelper.dbHelper.insertCategory(
+                        name: category,
+                        image: image,
+                      );
                       Logger().i(res);
                       if (res != null) {
-                        Get.showSnackbar(
-                          const GetSnackBar(
-                            title: 'insert....',
-                            duration: Duration(seconds: 1),
-                            backgroundColor: Colors.green,
-                          ),
+                        Get.snackbar(
+                          'Inserted',
+                          '$category category is Insertion failed...',
+                          colorText: Colors.white,
+                          backgroundColor: Colors.green,
                         );
                       } else {
                         Get.snackbar(
@@ -120,6 +118,7 @@ class CategoryComp extends StatelessWidget {
                         colorText: Colors.white,
                       );
                     }
+                    textController.clear();
                   },
                   label: const Text('Add Category'),
                   icon: const Icon(Icons.add_shopping_cart_rounded),

@@ -35,6 +35,9 @@ class HomeScreen extends StatelessWidget {
           destinations: const [
             NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
             NavigationDestination(
+                icon: Icon(Icons.call_to_action_outlined),
+                label: 'All Category'),
+            NavigationDestination(
                 icon: Icon(Icons.category), label: 'Category'),
             NavigationDestination(icon: Icon(Icons.settings), label: 'Setting'),
           ],

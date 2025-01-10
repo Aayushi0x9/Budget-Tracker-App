@@ -1,3 +1,4 @@
+import 'package:budget_tracker_app/component/all_category.dart';
 import 'package:budget_tracker_app/component/category.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ class AppController extends GetxController {
     const Center(
       child: Text('home'),
     ),
+    const AllCategory(),
     const CategoryComp(),
     const Center(
       child: Text('settings'),

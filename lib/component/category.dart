@@ -2,7 +2,6 @@ import 'package:budget_tracker_app/controller/category_controller.dart';
 import 'package:budget_tracker_app/helper/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -94,7 +93,6 @@ class CategoryComp extends StatelessWidget {
                         name: category,
                         image: image,
                       );
-                      Logger().i(res);
                       if (res != null) {
                         Get.snackbar(
                           'Inserted',

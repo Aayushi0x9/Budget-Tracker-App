@@ -11,8 +11,17 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     AppController controller = Get.put(AppController());
     return Scaffold(
+      backgroundColor: Color(0xff141326),
       appBar: AppBar(
-        title: const Text('Budget Tracker App'),
+        centerTitle: true,
+        backgroundColor: Color(0xff141326),
+        title: const Text(
+          'BUDGET TRACKER',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: PageView.builder(
         onPageChanged: (value) {
@@ -33,13 +42,14 @@ class HomeScreen extends StatelessWidget {
             controller.changePage(index: value);
           },
           destinations: const [
-            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+            NavigationDestination(
+                icon: Icon(Icons.done_all), label: 'all spending'),
+            NavigationDestination(icon: Icon(Icons.spa), label: 'Spending'),
             NavigationDestination(
                 icon: Icon(Icons.call_to_action_outlined),
                 label: 'All Category'),
             NavigationDestination(
                 icon: Icon(Icons.category), label: 'Category'),
-            NavigationDestination(icon: Icon(Icons.settings), label: 'Setting'),
           ],
         );
       }),

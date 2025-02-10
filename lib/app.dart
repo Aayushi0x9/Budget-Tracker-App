@@ -1,4 +1,3 @@
-import 'package:budget_tracker_app/screen/pages/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,8 +10,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorSchemeSeed: const Color(0xff141326),
+      ),
       getPages: GetPages.pagesGet,
-      home: HomeScreen(),
+      // home: const HomeScreen(),
     );
   }
 }

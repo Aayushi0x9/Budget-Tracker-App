@@ -1,9 +1,9 @@
 class CategoryModel {
-  int? id;
-  String? name;
-  int? image;
+  int id;
+  String name;
+  int image;
 
-  CategoryModel({this.id, this.name, this.image});
+  CategoryModel({required this.id, required this.name, required this.image});
 
   factory CategoryModel.fromMap({required Map m1}) {
     return CategoryModel(

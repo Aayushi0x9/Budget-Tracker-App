@@ -23,7 +23,7 @@ class CategoryController extends GetxController {
       'icon': Icons.lightbulb_outline,
     },
     {
-      'category': 'Transportation',
+      'category': 'Transport',
       'icon': Icons.directions_car_outlined,
     },
     {
@@ -76,6 +76,10 @@ class CategoryController extends GetxController {
     }
   ];
 
+  void updatedata() {
+    update();
+  }
+
   void getDefaultValue() {
     getCategorySelectedIndex = null;
     update();
@@ -122,6 +126,8 @@ class CategoryController extends GetxController {
         "Category is Delete...",
         backgroundColor: Colors.green.withOpacity(0.7),
       );
+      fetchCategoryData();
+      update();
     } else {
       Get.snackbar(
         'Failed',
